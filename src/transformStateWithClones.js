@@ -8,7 +8,7 @@
  * @return {Object[]}
  */
 function transformStateWithClones(state, actions) {
-  const states = [];
+  const stateHistory = [];
   let currentState = { ...state };
 
   for (const action of actions) {
@@ -39,13 +39,13 @@ function transformStateWithClones(state, actions) {
       }
 
       default: {
-        return `Unknown action type: ${action.type}`;
+        return 'throw new Error';
       }
     }
-    states.push(currentState);
+    stateHistory.push(currentState);
   }
 
-  return states;
+  return stateHistory;
 }
 
 module.exports = transformStateWithClones;
